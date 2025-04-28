@@ -117,14 +117,12 @@ restartButton.addEventListener('click', () => {
   createBoard();
 });
 
+Startcame();
 function saveScore(score) {
     localStorage.setItem('peli5_score', score);
 }
 const peli5_score = 10;
 saveScore(score)
-
-Startcame();
-
 
 
 
