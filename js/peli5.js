@@ -19,8 +19,18 @@ const maze = [
 
 let mousePosition = { x: 1, y: 1 };
 let cheesePosition = { x: 8, y: 8 };
-let score = 0;
+let score= 0;
 let attempts = 2;
+
+function saveScore(score) {
+  localStorage.setItem('peli5_score', score);
+}
+
+function loadScore() {
+  const savedScore = localStorage.getItem('peli5_score');
+  return savedScore ? parseInt(savedScore) : 0;
+}
+
 
 function createBoard() {
   board.innerHTML = '';
@@ -55,7 +65,7 @@ function moveMouse(dx, dy) {
 function checkWin() {
   if (mousePosition.x === cheesePosition.x && mousePosition.y === cheesePosition.y) {
     score++;
-    alert('Sait juuston! Hyvä!');
+    saveScore(score); 
     resetPositions();
     updateScoreAndAttempts();
   }
@@ -101,17 +111,20 @@ startButton.addEventListener('click', () => {
 restartButton.addEventListener('click', () => {
   score = 0;
   attempts = 2;
+  saveScore(score); 
   resetPositions();
   updateScoreAndAttempts();
   createBoard();
 });
 
-function startGame() {
-  createBoard();
-  updateScoreAndAttempts();
+function saveScore(score) {
+    localStorage.setItem('peli5_score', score);
 }
+const peli5_score = 10;
+saveScore(score)
 
-startGame();
+Startcame();
+
 
 
 
